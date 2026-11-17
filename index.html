@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Share and discover books in a community library." />
+    <title>Community Library</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="header">
+        <p class="eyebrow">Community Library</p>
+        <h1>Share a book.<br />Open a new world.</h1>
+      </header>
+
+      <section class="panel" aria-labelledby="add-book-heading">
+        <h2 id="add-book-heading">Add a book</h2>
+        <form id="book-form">
+          <label>
+            Title
+            <input id="title" name="title" type="text" required maxlength="100" />
+          </label>
+          <label>
+            Author
+            <input id="author" name="author" type="text" required maxlength="100" />
+          </label>
+          <button type="submit">Add to library</button>
+        </form>
+      </section>
+
+      <section class="library" aria-labelledby="library-heading">
+        <div class="library-heading">
+          <h2 id="library-heading">Books</h2>
+          <span id="book-count">0 books</span>
+        </div>
+        <div id="book-list" class="book-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -25,6 +25,13 @@ function escapeText(value) {
   return element.innerHTML;
 }
 
+function createId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+  return String(Date.now());
+}
+
 function renderBooks() {
   bookCount.textContent = `${books.length} ${books.length === 1 ? "book" : "books"}`;
 
@@ -42,7 +49,7 @@ function renderBooks() {
             <h3>${escapeText(book.title)}</h3>
             <p>by ${escapeText(book.author)}</p>
           </div>
-          <button class="delete-button" type="button" data-id="${book.id}" aria-label="Remove ${escapeText(book.title)}">Remove</button>
+          <button class="delete-button" type="button" data-id="${escapeText(book.id)}" aria-label="Remove ${escapeText(book.title)}">Remove</button>
         </article>
       `,
     )
@@ -50,7 +57,7 @@ function renderBooks() {
 }
 
 form.addEventListener("submit", (event) => {
-  event.preventEvent();
+  event.preventDefault();
 
   const title = titleInput.value.trim();
   const author = authorInput.value.trim();
@@ -58,7 +65,7 @@ form.addEventListener("submit", (event) => {
   if (!title || !author) return;
 
   books.unshift({
-    id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+    id: createId(),
     title,
     author,
   });
